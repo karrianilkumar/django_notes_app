@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+
+{% block content %}
+ 
+        <h2>Your Notes</h2>
+
+        <!-- Styled Create New Note Button -->
+        <a href="{% url 'note-create' %}" class="create-btn">+ Create New Note</a>
+
+        <ul class="notes-list">
+            {% for note in notes %}
+                <li class="note-item">
+                    <div class="note-content">
+                        <strong>{{ note.title }}</strong> - {{ note.content }}  
+                        
+                    </div>
+                    <div class="note-actions">
+                        <a href="{% url 'note-update' note.pk %}" class="edit-btn">✏️</a>
+                        <a href="{% url 'note-delete' note.pk %}" class="delete-btn">🗑️</a>
+                    </div>
+                </li>
+            {% empty %}
+                <p>No notes found. Create your first note!</p>
+            {% endfor %}
+        </ul>
+
+
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+            width: 750px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Create New Note Button */
+        .create-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .create-btn:hover {
+            background: linear-gradient(135deg, #2E7D32, #1B5E20);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Notes List */
+        .notes-list {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .note-item {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .note-content {
+            flex: 1;
+            text-align: left;
+        }
+
+        .author {
+            display: block;
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* Action Buttons */
+        .note-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .edit-btn, .delete-btn {
+            text-decoration: none;
+            font-size: 18px;
+            padding: 5px 8px;
+            border-radius: 5px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .edit-btn {
+            color: #2196F3;
+            background: #E3F2FD;
+        }
+
+        .edit-btn:hover {
+            background: #90CAF9;
+        }
+
+        .delete-btn {
+            color: #E74C3C;
+            background: #FDEDEC;
+        }
+
+        .delete-btn:hover {
+            background: #F5B7B1;
+        }
+    </style>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+

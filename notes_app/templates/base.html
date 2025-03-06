@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes App</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" crossorigin="anonymous"></script>
+    
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+    background: linear-gradient(135deg, #dbeafe, #a5d8ff);
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+
+        /* Navbar */
+        nav {
+            width: 100%;
+            background-color: #007bff;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Home Button */
+        .home-btn {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            color: white;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            padding: 5px;
+        }
+
+        .home-btn i {
+            font-size: 28px;
+        }
+
+        /* Centered Navbar Title */
+        .navbar-title {
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+            text-align: center;
+            flex-grow: 1;
+            margin-left: -28px; /* Adjusting to center properly */
+        }
+
+        /* Logout Button */
+        .logout-btn {
+            background-color: #ff4d4d;
+            color: white;
+            padding: 8px 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .logout-btn:hover {
+            background-color: #e60000;
+        }
+
+        /* Login Button */
+        .login-btn {
+            background-color: #28a745;
+        }
+
+        .login-btn:hover {
+            background-color: #218838;
+        }
+
+        /* Content Section - Increased Width */
+        .container {
+            width: 90%; /* Increased from 80% to 90% */
+            max-width: 1000px; /* Increased from 800px to 1000px */
+            background: white;
+            padding: 30px;
+            margin-top: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 30px;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+            background-color: #343a40;
+            color: white;
+            font-size: 14px;
+            position: fixed;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <!-- Home Icon Button (Refreshes Page) -->
+    <button class="home-btn" onclick="location.reload();">
+        <i class="fas fa-home"></i>
+    </button>
+
+    <!-- Center Heading -->
+    <h1 class="navbar-title">Welcome to Notes App</h1>
+
+    <!-- Logout Button on the Right -->
+    {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+    {% else %}
+        <a href="{% url 'login' %}" class="logout-btn login-btn">Login</a>
+    {% endif %}
+</nav>
+
+
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer>
+        &copy; 2025 Notes App | Built with ❤️ by Your Company
+    </footer>
+
+</body>
+</html>
+

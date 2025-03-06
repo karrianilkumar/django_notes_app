@@ -1,0 +1,156 @@
+
+
+{% block content %}
+<div class="register-container">
+    <h2>Register</h2>
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            {{ form.username.label_tag }}
+            {{ form.username }}
+        </div>
+
+        <div class="form-group">
+            {{ form.password1.label_tag }}
+            {{ form.password1 }}
+        </div>
+
+        <div class="form-group">
+            {{ form.password2.label_tag }}
+            {{ form.password2 }}
+        </div>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <button class="rules-btn" onclick="toggleRules()">Rules for Registration</button>
+    <div id="rules-box" class="rules-box">
+        <p><strong>Username Rules:</strong> Up to 150 characters. Letters, digits, and @/./+/-/_ only.</p>
+        <p><strong>Password Rules:</strong> 
+            <ul>
+                <li>Must be at least 8 characters.</li>
+                <li>Cannot be too similar to personal information.</li>
+                <li>Cannot be a common password.</li>
+                <li>Cannot be entirely numeric.</li>
+            </ul>
+        </p>
+    </div>
+
+    <p class="login-prompt">Already registered? <a href="{% url 'login' %}" class="login-link">Login here</a></p>
+</div>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .register-container {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+        width: 350px;
+        text-align: center;
+    }
+
+    h2 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .form-group {
+        text-align: left;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 12px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background 0.3s ease-in-out;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+    .rules-btn {
+        margin-top: 10px;
+        background-color: #007bff;
+        border: none;
+        padding: 10px;
+        color: white;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 14px;
+        transition: background 0.3s ease-in-out;
+    }
+
+    .rules-btn:hover {
+        background-color: #0056b3;
+    }
+
+    .rules-box {
+        display: none;
+        background: #f8f9fa;
+        padding: 10px;
+        margin-top: 10px;
+        border-radius: 5px;
+        text-align: left;
+        font-size: 14px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-prompt {
+        margin-top: 15px;
+        font-size: 14px;
+    }
+
+    .login-link {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .login-link:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<script>
+    function toggleRules() {
+        let rulesBox = document.getElementById("rules-box");
+        if (rulesBox.style.display === "none" || rulesBox.style.display === "") {
+            rulesBox.style.display = "block";
+        } else {
+            rulesBox.style.display = "none";
+        }
+    }
+</script>
+
+{% endblock %}
+

@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>{% if form.instance.pk %}Edit Note{% else %}Create New Note{% endif %}</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="input-group">
+            <label for="{{ form.title.id_for_label }}">Title</label>
+            {{ form.title }}
+        </div>
+
+        <div class="input-group">
+            <label for="{{ form.content.id_for_label }}">Content</label>
+            {{ form.content }}
+        </div>
+
+        <button type="submit">Save Note</button>
+    </form>
+
+    <a href="{% url 'notes-list' %}" class="back-btn">Back to Notes</a>
+
+    <style>
+        /* Centering and styling */
+        h2 {
+            text-align: center;
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 400px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        textarea {
+            resize: vertical;
+            height: **200px**; /* Bigger content box */
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .back-btn {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            background-color: #6c757d;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .back-btn:hover {
+            background-color: #5a6268;
+        }
+    </style>
+{% endblock %}
+
